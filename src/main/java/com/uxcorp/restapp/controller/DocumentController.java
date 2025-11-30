@@ -19,16 +19,14 @@ import com.uxcorp.restapp.dto.request.UpdateDocumentDescriptionDTO;
 import com.uxcorp.restapp.dto.request.UpdateDocumentNameDTO;
 import com.uxcorp.restapp.service.DocumentService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/document")
+@RequiredArgsConstructor
 public class DocumentController {
 
-    private DocumentService documentService;
-
-    public DocumentController(DocumentService documentService) {
-        this.documentService = documentService;
-    }
+    private final DocumentService documentService;
 
     @GetMapping("/all")
     public ResponseEntity<?> getDocuments() {

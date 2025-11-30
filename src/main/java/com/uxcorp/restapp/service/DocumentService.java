@@ -16,20 +16,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import com.uxcorp.restapp.dto.request.UpdateDocumentNameDTO;
 import com.uxcorp.restapp.dto.response.DocumentResponseDTO;
-import com.uxcorp.restapp.factory.DocumentFactory;
 import com.uxcorp.restapp.model.Document;
+import com.uxcorp.restapp.repository.DocumentRepository;
+
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class DocumentService {
 
-    private DocumentFactory documentFactory;
+    private final DocumentRepository documentFactory;
 
     @Value("${app.base-url}")
     private String baseUrl;
-
-    public DocumentService(DocumentFactory documentFactory) {
-        this.documentFactory = documentFactory;
-    }
 
     public ResponseEntity<?> newDocument(MultipartFile file, String description) {
         List<Document> existingDocs = documentFactory.findByFileName(file.getOriginalFilename());

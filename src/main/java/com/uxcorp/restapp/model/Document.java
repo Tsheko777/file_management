@@ -11,23 +11,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
+import lombok.Data;
 
 @Entity
 @Table(name = "tbl_document")
 @EntityListeners(AuditingEntityListener.class)
+@Data
 public class Document {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     @Column(name = "file_type", nullable = false)
     private String fileType;
@@ -54,48 +48,4 @@ public class Document {
     public void onUpdate() {
         updatedAt = LocalDateTime.now();
     }
-
-    public Document() {
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public String getFileType() {
-        return fileType;
-    }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setFileType(String fileType) {
-        this.fileType = fileType;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
 }

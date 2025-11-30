@@ -1,21 +1,10 @@
 package com.uxcorp.restapp.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
 
+@Data
 public class UpdateDocumentDescriptionDTO {
-
     @NotBlank(message = "Description is required")
     private String description;
-
-    public UpdateDocumentDescriptionDTO() {
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
 }
